@@ -1,0 +1,29 @@
+#include<iostream>
+
+
+                                   //Our custom databases
+std::string GetDataFromDB()
+{
+	return "Data From DB";
+}
+
+std::string GetDataFromWebServer()
+{
+	return "Data From WebServer";
+}
+
+std::string GetDataFromAstral()
+{
+	return "Data From Astral";
+}
+                                  //function that will display data from the database
+void ShowInfo(std::string(*foo)())
+{
+	std::cout << foo() << std::endl;
+}
+
+void main()
+{
+                                  //ShowInfo(*Choose_a_DB*);
+	ShowInfo(GetDataFromWebServer);
+}
