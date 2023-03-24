@@ -1,0 +1,73 @@
+#include<iostream>
+
+class MyClass
+{
+private:
+	int* data;
+	int Size;
+public:
+	MyClass(int size)
+	{
+		this->Size = size;
+		this->data = new int[size];
+
+		for (int i = 0; i < size; i++)
+		{
+			data[i] = i;
+		}
+		std::cout << "constructor " << this << std::endl;
+	};
+
+	//copy constructor
+	MyClass(const MyClass& other)
+	{
+
+		this->Size = other.Size;
+
+		this->data = new int[other.Size];
+
+		for (int i = 0; i < other.Size; i++)
+		{
+			this->data[i] = other.data[i];
+		}
+		std::cout << "copy constructor " << this << std::endl;
+	}
+
+	//destructor
+	~MyClass()
+	{
+		std::cout << "destructor " << this << std::endl;
+		delete[] data;
+	};
+
+	//copy assignment operator
+	MyClass& operator = (const MyClass& other)
+	{
+		std::cout << "operator = " << this << std::endl;
+
+		this->Size = other.Size;
+
+		if (this->data != nullptr)
+		{
+			delete[] this->data;
+		}
+		this->data = new int[other.Size];
+
+		for (int i = 0; i < other.Size; i++)
+			this->data[i] = other.data[i];
+		return *this;
+	}
+};
+int main()
+{
+	
+  //create three objects
+	MyClass a(10);
+	MyClass b(8);
+	MyClass c(7);
+
+  //and use an assignment operator
+	a = b = c;
+
+	return 0;
+}
