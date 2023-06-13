@@ -1,0 +1,53 @@
+//We have a Human class. An instance of this class has properties like id, age and nationality.
+//We created two objects of this class, and then using the static function changed the nationality
+//of the first object from "Belarusian" to "Ukrainian". Static function is extremely convenient,
+//because it allows you to provide common functionality or access to data for all objects of the class,
+//without requiring the creation of class instances.
+
+#include <iostream>
+#include <string>
+
+class Human
+{
+private:
+	int age;
+	std::string nationality;
+	int id;
+	static int count;
+
+public:
+	Human(int age, std::string nationality)
+	{
+		this->age = age;
+		this->nationality = nationality;
+		count++;
+		id = count;
+	}
+
+	static void ChangeNationality(Human& human, std::string nationality)
+	{
+		human.nationality = nationality;
+	}
+
+	void PrintHuman()
+	{
+		std::cout << "Human: #" << id << std::endl;
+		std::cout << "age: " << age << std::endl;
+		std::cout << "nationality: " << nationality << std::endl << std::endl;
+	}
+};
+
+int Human::count = 0;
+
+int main()
+{
+	Human human1(18, "Belarus");
+	Human human2(20, "Russian");
+	human1.PrintHuman();
+	human2.PrintHuman();
+
+	human1.ChangeNationality(human1, "Ukrainian");
+	human1.PrintHuman();
+	human2.PrintHuman();
+	return 0;
+}
