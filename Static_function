@@ -41,7 +41,7 @@ int Human::count = 0;
 
 int main()
 {
-	Human human1(18, "Belarus");
+	Human human1(18, "Belarusian");
 	Human human2(20, "Russian");
 	human1.PrintHuman();
 	human2.PrintHuman();
