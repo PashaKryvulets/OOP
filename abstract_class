@@ -1,0 +1,89 @@
+#include<iostream>
+
+class Shape
+{
+public:
+	virtual double GetArea() const = 0;
+	virtual double GetPerimeter() const = 0;
+	virtual void Print() const = 0;
+};
+
+class Circle : public Shape
+{
+private:
+	double radius;
+public:
+	Circle(double r) : radius(r) {}
+
+	double GetArea() const override
+	{
+		return 3.14 * radius * radius;
+	}
+
+	double GetPerimeter() const override
+	{
+		return 2 * 3.14 * radius;
+	}
+
+	void Print() const override
+	{
+		std::cout << "Shape: Circle " << std::endl;
+		std::cout << "radius: " << radius << std::endl;
+		std::cout << "Area: " << this->GetArea() << ", Perimeter: " << this->GetPerimeter();
+		std::cout << std::endl << std::endl;
+	}
+};
+
+
+class Rectangle : public Shape
+{
+private:
+	double length, width, height;
+public:
+	Rectangle(double l, double w, double h) : length(l), width(w), height(h) {}
+
+	double GetArea() const override
+	{
+		return 2*length*width + 2*height*width + 2*height*length;
+	}
+
+	double GetPerimeter() const override
+	{
+		return height * length * width;
+	}
+
+	void Print() const override
+	{
+		std::cout << "Shape: Rectangle "<< std::endl;
+		std::cout << "length: "<< length << ", width: " << width << ", height: " << height << std::endl;
+		std::cout << "Area: " << this->GetArea() << ", Perimeter: " << this->GetPerimeter() << std::endl;
+		std::cout << std::endl << std::endl;
+	}
+};
+
+int main(void)
+{
+	setlocale(LC_ALL, "ru");
+
+	double radius;
+	std::cout << "Object: Ball \n";
+	std::cout << "Enter the radius: ";
+	std::cin >> radius;
+	std::cout << std::endl;
+	Shape* Earth = new Circle(radius);
+	std::cout << "Object: Ball \n";
+	Earth->Print();
+	delete Earth;
+
+	double length, width, height;
+	std::cout << "Object: Box \n";
+	std::cout << "Enter the length, width and height: ";
+	std::cin >> length >> width >> height;
+	std::cout << std::endl;
+	Shape* Box = new Rectangle(length, width, height);
+	std::cout << "Object: Box \n";
+	Box->Print();
+	delete Box;
+
+	return 0;
+}
