@@ -70,7 +70,7 @@ int main(void)
 	std::cout << "Enter the radius: ";
 	std::cin >> radius;
 	std::cout << std::endl;
-	Shape* Earth = new Circle(radius);
+	Shape* Ball = new Circle(radius);
 	std::cout << "Object: Ball \n";
 	Earth->Print();
 	delete Earth;
